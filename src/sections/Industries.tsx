@@ -1,55 +1,67 @@
 import { motion } from 'motion/react';
-import { Building, Coffee, Factory, ShoppingBag, Stethoscope, Briefcase, GraduationCap, MonitorSmartphone } from 'lucide-react';
+import { Building, Coffee, Factory, ShoppingBag, Stethoscope, Briefcase, GraduationCap, MonitorSmartphone, PackageOpen, HardHat } from 'lucide-react';
 
 const industries = [
-  { icon: Building, name: 'Hotels & Resorts' },
-  { icon: Coffee, name: 'Restaurants & Cafes' },
-  { icon: Briefcase, name: 'Corporate Offices' },
-  { icon: Factory, name: 'Manufacturing Units' },
-  { icon: ShoppingBag, name: 'Retail Businesses' },
-  { icon: MonitorSmartphone, name: 'Start-ups & SMEs' },
-  { icon: Building, name: 'Facility Management' },
-  { icon: Stethoscope, name: 'Healthcare' },
-  { icon: GraduationCap, name: 'Education' },
+  { icon: Building, name: 'Hotels', desc: 'Luxury and business accommodation staffing.' },
+  { icon: Coffee, name: 'Restaurants', desc: 'F&B, culinary, and service professionals.' },
+  { icon: Stethoscope, name: 'Healthcare', desc: 'Administrative and support medical staff.' },
+  { icon: ShoppingBag, name: 'Retail', desc: 'Store management and customer service teams.' },
+  { icon: Factory, name: 'Manufacturing', desc: 'Skilled workforce for production operations.' },
+  { icon: Briefcase, name: 'Corporate Offices', desc: 'Executive, administrative, and operations talent.' },
+  { icon: GraduationCap, name: 'Education', desc: 'Institutional support and faculty staffing.' },
+  { icon: MonitorSmartphone, name: 'Facility Management', desc: 'Comprehensive property and facility services.' },
+  { icon: HardHat, name: 'Construction', desc: 'Engineering and project management professionals.' },
+  { icon: PackageOpen, name: 'Logistics', desc: 'Supply chain and distribution workforce.' },
 ];
 
 export default function Industries() {
   return (
-    <section id="industries" className="py-24 bg-gray-50 border-t border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+    <section id="industries" className="py-24 lg:py-32 bg-white relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center max-w-3xl mx-auto mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <h2 className="text-brand-blue font-semibold tracking-wider uppercase mb-3">Our Reach</h2>
-            <h3 className="text-3xl md:text-5xl font-heading font-bold text-brand-navy mb-6">
+            <span className="text-xs font-bold tracking-[0.2em] uppercase text-brand-blue bg-blue-50 px-3 py-1.5 rounded-sm mb-6 inline-block">
+              Sector Expertise
+            </span>
+            <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-brand-navy mb-6 tracking-tight leading-[1.1]">
               Industries We Serve
-            </h3>
-            <p className="text-gray-600 text-lg">
-              Providing specialized workforce and compliance solutions across diverse sectors to power your business growth.
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-medium">
+              Delivering highly specialized workforce and meticulous compliance solutions engineered for diverse corporate sectors.
             </p>
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {industries.map((industry, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="bg-white rounded-2xl p-6 text-center border border-gray-100 shadow-sm hover:shadow-xl hover:border-brand-blue/30 transition-all duration-300 group cursor-default"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+              className="group relative bg-white rounded-[1.5rem] p-6 text-center border border-gray-100 shadow-[0_4px_20px_rgb(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.06)] hover:border-brand-blue/20 transition-all duration-500 hover:-translate-y-2 flex flex-col h-full overflow-hidden"
             >
-              <div className="w-16 h-16 mx-auto bg-gray-50 rounded-full flex items-center justify-center text-brand-navy group-hover:bg-brand-blue group-hover:text-white transition-colors duration-300 mb-4">
-                <industry.icon size={28} />
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              
+              <div className="relative z-10 flex-1 flex flex-col items-center">
+                <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center text-brand-navy group-hover:bg-gradient-to-br group-hover:from-brand-royal group-hover:to-brand-blue group-hover:text-white transition-all duration-500 mb-5 shadow-sm group-hover:shadow-md">
+                  <industry.icon size={24} className="group-hover:scale-110 transition-transform duration-500" />
+                </div>
+                <h3 className="font-bold text-gray-900 group-hover:text-brand-blue transition-colors duration-300 mb-2">
+                  {industry.name}
+                </h3>
+                <p className="text-sm text-gray-500 leading-relaxed group-hover:text-gray-600 transition-colors">
+                  {industry.desc}
+                </p>
               </div>
-              <h4 className="font-semibold text-gray-800 group-hover:text-brand-blue transition-colors duration-300">
-                {industry.name}
-              </h4>
             </motion.div>
           ))}
         </div>

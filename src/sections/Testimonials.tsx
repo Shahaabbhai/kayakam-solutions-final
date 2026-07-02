@@ -1,117 +1,83 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
+import { motion } from 'motion/react';
+import { ShieldCheck, Clock, HeartHandshake, Briefcase, CheckCircle2 } from 'lucide-react';
 
-const testimonials = [
+const commitments = [
   {
-    id: 1,
-    content: "Kayakam Solutions has transformed our hiring process. Their deep understanding of the hospitality sector meant we got staff who were perfectly aligned with our luxury brand standards.",
-    name: "Rajesh Kumar",
-    designation: "General Manager",
-    company: "Grand Horizon Hotels",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=200"
+    icon: Briefcase,
+    title: 'Uncompromising Professionalism',
+    content: 'We adhere to the highest standards of corporate integrity, ensuring every interaction, placement, and process is handled with absolute professionalism.'
   },
   {
-    id: 2,
-    content: "Their compliance management services are top-notch. Since partnering with Kayakam, we have had zero compliance issues, and our payroll processes are completely automated and error-free.",
-    name: "Priya Sharma",
-    designation: "HR Director",
-    company: "TechNova Solutions",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200"
+    icon: HeartHandshake,
+    title: 'Personalized Service',
+    content: 'As a newly established consultancy, we provide dedicated, hands-on attention to every client. Your business goals become our primary focus.'
   },
   {
-    id: 3,
-    content: "Setting up a new restaurant is chaotic, but Kayakam provided us with an entire pre-opening team within weeks. Highly professional and deeply reliable.",
-    name: "Vikram Mehta",
-    designation: "Founder",
-    company: "Spice Route Dining",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200"
+    icon: ShieldCheck,
+    title: '100% Statutory Compliance',
+    content: 'We navigate complex labor laws and regulations so you do not have to, guaranteeing full legal adherence for your peace of mind.'
+  },
+  {
+    icon: Clock,
+    title: 'Rapid Responsiveness',
+    content: 'Agility is our strength. We pride ourselves on quick turnaround times, proactive communication, and swift resolution to all staffing needs.'
+  },
+  {
+    icon: CheckCircle2,
+    title: 'Dedicated Support',
+    content: 'We are more than just a vendor; we are your strategic partner. Our team offers continuous support to ensure seamless workforce operations.'
   }
 ];
 
 export default function Testimonials() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const next = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prev = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
-
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-24 lg:py-32 bg-[#FAFCFF] relative overflow-hidden">
+      {/* Decorative Gradients */}
+      <div className="absolute top-0 right-0 w-full md:w-1/2 h-1/2 bg-brand-gold/[0.03] rounded-full blur-[100px] pointer-events-none -translate-y-1/3 translate-x-1/3" />
+      <div className="absolute bottom-0 left-0 w-full md:w-1/2 h-1/2 bg-brand-blue/[0.02] rounded-full blur-[100px] pointer-events-none translate-y-1/3 -translate-x-1/3" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <h2 className="text-brand-blue font-semibold tracking-wider uppercase mb-3">Client Success</h2>
-            <h3 className="text-3xl md:text-5xl font-heading font-bold text-brand-navy mb-6">
-              What Our Clients Say
-            </h3>
+            <span className="text-xs font-bold tracking-[0.2em] uppercase text-brand-gold bg-amber-50 px-3 py-1.5 rounded-sm mb-6 inline-block">
+              Our Promise
+            </span>
+            <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-brand-navy mb-6 tracking-tight leading-[1.1]">
+              Why Choose <br className="hidden md:block" />
+              <span className="text-brand-blue">Kayakam Solutions</span>
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-medium">
+              As a dynamic new agency, we bring fresh energy, unparalleled dedication, and a modernized approach to HR and Hospitality solutions.
+            </p>
           </motion.div>
         </div>
 
-        <div className="max-w-4xl mx-auto relative">
-          <div className="absolute top-0 left-0 text-brand-blue/10 transform -translate-x-1/2 -translate-y-1/2">
-            <Quote size={120} />
-          </div>
-
-          <div className="bg-gray-50 rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100 relative z-10">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
-                className="flex flex-col items-center text-center"
-              >
-                <div className="flex gap-1 mb-6">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={20} className="fill-brand-gold text-brand-gold" />
-                  ))}
-                </div>
-                
-                <p className="text-xl md:text-2xl text-gray-700 font-medium mb-10 leading-relaxed italic">
-                  "{testimonials[currentIndex].content}"
-                </p>
-                
-                <div className="flex items-center gap-4">
-                  <img 
-                    src={testimonials[currentIndex].image} 
-                    alt={testimonials[currentIndex].name}
-                    className="w-16 h-16 rounded-full object-cover border-2 border-brand-gold shadow-md"
-                  />
-                  <div className="text-left">
-                    <div className="font-bold text-brand-navy text-lg">{testimonials[currentIndex].name}</div>
-                    <div className="text-sm text-gray-500">{testimonials[currentIndex].designation}, {testimonials[currentIndex].company}</div>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Navigation Buttons */}
-            <div className="flex justify-center gap-4 mt-10">
-              <button 
-                onClick={prev}
-                className="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center text-brand-navy hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-all shadow-sm"
-              >
-                <ChevronLeft size={24} />
-              </button>
-              <button 
-                onClick={next}
-                className="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center text-brand-navy hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-all shadow-sm"
-              >
-                <ChevronRight size={24} />
-              </button>
-            </div>
-          </div>
+        <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
+          {commitments.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+              className="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-300 group w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.33rem)]"
+            >
+              <div className="w-14 h-14 bg-gradient-to-br from-brand-royal to-brand-blue rounded-xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
+                <item.icon size={24} />
+              </div>
+              <h3 className="text-xl font-bold text-brand-navy mb-4 group-hover:text-brand-blue transition-colors">
+                {item.title}
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                {item.content}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

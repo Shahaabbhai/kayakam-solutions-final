@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { motion, useScroll, useSpring, AnimatePresence } from 'motion/react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -6,10 +6,10 @@ import Footer from './components/Footer';
 import Cursor from './components/Cursor';
 import { PhoneCall } from 'lucide-react';
 
-import Home from './pages/Home';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import Terms from './pages/Terms';
-import NotFound from './pages/NotFound';
+const Home = lazy(() => import('./pages/Home'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const Terms = lazy(() => import('./pages/Terms'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -21,6 +21,12 @@ function ScrollToTop() {
   return null;
 }
 
+const PageLoader = () => (
+  <div className="min-h-[60vh] flex items-center justify-center">
+    <div className="w-8 h-8 border-4 border-brand-blue border-t-transparent rounded-full animate-spin"></div>
+  </div>
+);
+
 const PageWrapper = ({ children }: { children: React.ReactNode }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
@@ -28,7 +34,9 @@ const PageWrapper = ({ children }: { children: React.ReactNode }) => (
     exit={{ opacity: 0, y: -20 }}
     transition={{ duration: 0.4 }}
   >
-    {children}
+    <Suspense fallback={<PageLoader />}>
+      {children}
+    </Suspense>
   </motion.div>
 );
 
@@ -54,6 +62,7 @@ export default function App() {
         <Navbar />
         <main>
           <AnimatePresence mode="wait">
+            {/* @ts-expect-error - key is a valid React prop but RoutesProps doesn't explicitly include it */}
             <Routes location={location} key={location.pathname}>
               <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
               <Route path="/privacy-policy" element={<PageWrapper><PrivacyPolicy /></PageWrapper>} />

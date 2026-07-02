@@ -2,35 +2,11 @@ import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 
 const stats = [
-  { value: 10, suffix: '+', label: 'Years Experience' },
-  { value: 2500, suffix: '+', label: 'Successful Placements' },
-  { value: 500, suffix: '+', label: 'Satisfied Clients' },
-  { value: 100, suffix: '%', label: 'Compliance Projects' },
+  { title: 'HR Consultancy', desc: 'Expert Workforce Solutions' },
+  { title: 'Hospitality Staffing', desc: 'Premium Industry Talent' },
+  { title: 'Labour Law Compliance', desc: '100% Statutory Adherence' },
+  { title: 'Payroll & Documentation', desc: 'Accurate & Timely Processing' },
 ];
-
-function Counter({ end, suffix }: { end: number, suffix: string }) {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    let start = 0;
-    const duration = 2000;
-    const increment = end / (duration / 16);
-    
-    const timer = setInterval(() => {
-      start += increment;
-      if (start > end) {
-        setCount(end);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-
-    return () => clearInterval(timer);
-  }, [end]);
-
-  return <span>{count}{suffix}</span>;
-}
 
 export default function Stats() {
   return (
@@ -40,7 +16,7 @@ export default function Stats() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 text-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 text-center">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
@@ -50,11 +26,11 @@ export default function Stats() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="glass-dark p-8 rounded-2xl border-t-4 border-brand-gold"
             >
-              <div className="text-4xl md:text-5xl font-number font-bold text-white mb-2">
-                <Counter end={stat.value} suffix={stat.suffix} />
+              <div className="text-xl md:text-2xl font-heading font-bold text-white mb-2">
+                {stat.title}
               </div>
               <div className="text-sm md:text-base font-medium text-brand-gold-light uppercase tracking-wider">
-                {stat.label}
+                {stat.desc}
               </div>
             </motion.div>
           ))}

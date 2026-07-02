@@ -60,10 +60,7 @@ export default function Home() {
               className="flex flex-col items-center"
             >
               <div className="w-32 h-32 mb-8 bg-white p-4 rounded-2xl flex items-center justify-center shadow-2xl">
-                <img src="/logo.png" alt="Kayakam Solutions" className="w-full h-auto" onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = 'none';
-                  (e.target as HTMLImageElement).parentElement!.innerHTML = '<span class="text-brand-navy font-bold text-2xl">KAYAKAM</span>';
-                }} />
+                <img src="/logo.png" alt="Kayakam Solutions" className="w-full h-auto" />
               </div>
               <motion.div
                 animate={{ width: ["0%", "100%"] }}

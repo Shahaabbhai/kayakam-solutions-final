@@ -1,123 +1,157 @@
 import { motion } from 'motion/react';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ShieldCheck, MapPin, Users } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-brand-navy">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000"
-          alt="Corporate Office"
-          className="w-full h-full object-cover opacity-30"
+    <section 
+      id="home" 
+      className="relative min-h-[100dvh] flex items-center pt-28 pb-16 overflow-hidden bg-[#F8FAFC] selection:bg-brand-gold selection:text-brand-navy"
+    >
+      {/* Subtle Animated Background Gradients */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <motion.div 
+          animate={{ x: [0, 50, 0], y: [0, -50, 0] }}
+          transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+          className="absolute top-[-10%] right-[-5%] w-[60%] h-[60%] rounded-full bg-brand-navy/[0.03] blur-[100px]" 
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-navy via-brand-navy/90 to-brand-navy/60" />
+        <motion.div 
+          animate={{ x: [0, -30, 0], y: [0, 40, 0] }}
+          transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
+          className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-brand-royal/[0.04] blur-[100px]" 
+        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* Left Column - Content */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="max-w-2xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-6 pt-10 lg:pt-0"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 mb-6 backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-brand-gold animate-pulse" />
-              <span className="text-xs font-medium text-white tracking-wider uppercase">HR Consultancy & Hospitality Services</span>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white border border-gray-200 mb-8 shadow-sm"
+            >
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-royal opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-royal"></span>
+              </span>
+              <span className="text-sm font-semibold text-brand-navy tracking-wide">Trusted Partner for Sustainable Growth</span>
+            </motion.div>
             
-            <h1 className="text-4xl md:text-6xl font-heading font-bold text-white leading-tight mb-6">
-              Empowering Businesses With <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-brand-gold-light">Smart HR</span> & Compliance Solutions
+            <h1 className="text-5xl sm:text-6xl lg:text-[4.5rem] font-heading font-extrabold text-brand-navy leading-[1.1] tracking-tight mb-6">
+              Smart HR Consultancy & <br className="hidden md:block" />
+              <span className="text-brand-royal">Hospitality Services.</span>
             </h1>
             
-            <p className="text-lg text-gray-300 mb-8 max-w-xl leading-relaxed">
-              We deliver end-to-end workforce solutions for hotels, resorts, restaurants, and corporate clients across India. Build your dream team with confidence.
+            <p className="text-lg md:text-xl text-gray-600 mb-10 max-w-xl leading-relaxed font-medium">
+              We deliver end-to-end workforce solutions, reliable statutory compliance, and premier hospitality staffing to empower businesses across India.
             </p>
             
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="#contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-medium text-brand-navy bg-white rounded-full shadow-xl hover:bg-gray-50 transition-all hover:scale-105"
+                href="/#contact"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-bold text-white bg-brand-navy rounded-full shadow-lg hover:shadow-xl hover:bg-brand-royal transition-all duration-300 hover:-translate-y-0.5"
               >
                 Get Free Consultation
-                <ArrowRight size={18} />
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
-                href="#services"
-                className="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-white bg-transparent border border-white/30 rounded-full hover:bg-white/10 transition-all"
+                href="/#services"
+                className="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-brand-navy bg-white border border-gray-200 rounded-full hover:bg-gray-50 hover:border-gray-300 shadow-sm transition-all duration-300"
               >
                 Explore Services
               </a>
             </div>
             
-            <div className="mt-10 flex items-center gap-6 text-sm text-gray-300">
+            <div className="mt-12 flex flex-wrap items-center gap-y-4 gap-x-8 text-sm text-gray-600 font-medium">
               <div className="flex items-center gap-2">
-                <CheckCircle2 size={16} className="text-brand-gold" />
-                <span>Smart HR Solutions</span>
+                <CheckCircle2 className="w-5 h-5 text-brand-gold" />
+                <span>Smart Solutions</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 size={16} className="text-brand-gold" />
-                <span>100% Compliance</span>
+                <CheckCircle2 className="w-5 h-5 text-brand-gold" />
+                <span>Strong Compliance</span>
               </div>
             </div>
           </motion.div>
 
-          {/* Right Column - Floating Cards & Stats */}
+          {/* Right Column - Illustration & Floating Elements */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative hidden lg:block h-[600px]"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="lg:col-span-6 relative hidden lg:block mt-12 lg:mt-0"
           >
-            {/* Main Image */}
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4/5 h-[500px] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-              <img 
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1000" 
-                alt="Business Meeting" 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-brand-royal/20 mix-blend-multiply" />
+            {/* Main Image Container */}
+            <div className="relative w-full aspect-square max-h-[600px] ml-auto">
+              <div className="absolute inset-0 rounded-[2rem] bg-white border border-gray-100 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] overflow-hidden p-3">
+                <div className="relative w-full h-full rounded-[1.5rem] overflow-hidden bg-gray-100">
+                  <img 
+                    src="https://images.unsplash.com/photo-1556761175-5973dc0f32b7?auto=format&fm=webp&q=80&w=1200" 
+                    alt="Professionals in a corporate office meeting representing Kayakam Solutions HR services" 
+                    className="w-full h-full object-cover"
+                    fetchPriority="high"
+                    decoding="async"
+                  />
+                  <div className="absolute inset-0 bg-brand-navy/5 mix-blend-overlay"></div>
+                </div>
+              </div>
+
+              {/* Floating Stat 1: HR Consultancy */}
+              <motion.div 
+                animate={{ y: [-8, 8, -8] }}
+                transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+                className="absolute -left-12 top-20 bg-white border border-gray-100 p-5 rounded-2xl shadow-[0_15px_30px_-10px_rgba(0,0,0,0.1)] z-20 flex items-center gap-4"
+              >
+                <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-brand-royal">
+                  <Users className="w-6 h-6" />
+                </div>
+                <div>
+                  <div className="text-xl font-heading font-bold text-brand-navy leading-none mb-1">HR Consultancy</div>
+                  <div className="text-xs text-gray-500 font-medium uppercase tracking-wider">Expert HR Solutions</div>
+                </div>
+              </motion.div>
+
+              {/* Floating Stat 2: Hospitality Staffing */}
+              <motion.div 
+                animate={{ y: [8, -8, 8] }}
+                transition={{ repeat: Infinity, duration: 7, ease: "easeInOut", delay: 1 }}
+                className="absolute -right-8 bottom-32 bg-white border border-gray-100 p-5 rounded-2xl shadow-[0_15px_30px_-10px_rgba(0,0,0,0.1)] z-20 flex items-center gap-4"
+              >
+                <div className="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center text-green-600">
+                  <ShieldCheck className="w-6 h-6" />
+                </div>
+                <div>
+                  <div className="text-xl font-heading font-bold text-brand-navy leading-none mb-1">Hospitality Staffing</div>
+                  <div className="text-xs text-gray-500 font-medium uppercase tracking-wider">Premium Staffing</div>
+                </div>
+              </motion.div>
+
+              {/* Floating Stat 3: Labour Law Compliance */}
+              <motion.div 
+                animate={{ y: [-5, 5, -5] }}
+                transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 0.5 }}
+                className="absolute left-10 -bottom-6 bg-white border border-gray-100 p-4 rounded-2xl shadow-[0_15px_30px_-10px_rgba(0,0,0,0.1)] z-20 flex items-center gap-3"
+              >
+                <div className="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center text-brand-gold">
+                  <MapPin className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-sm font-bold text-brand-navy leading-none mb-0.5">Labour Law Compliance</div>
+                  <div className="text-[10px] text-gray-500 font-medium uppercase tracking-wider">100% Compliance</div>
+                </div>
+              </motion.div>
             </div>
-
-            {/* Floating Card 1 */}
-            <motion.div 
-              animate={{ y: [0, -15, 0] }}
-              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-              className="absolute left-0 top-20 glass-dark p-6 rounded-2xl shadow-2xl w-64 border-l-4 border-l-brand-gold backdrop-blur-xl"
-            >
-              <div className="text-4xl font-number font-bold text-white mb-1">500<span className="text-brand-gold">+</span></div>
-              <div className="text-sm text-gray-300 font-medium tracking-wide">Satisfied Clients</div>
-            </motion.div>
-
-            {/* Floating Card 2 */}
-            <motion.div 
-              animate={{ y: [0, 15, 0] }}
-              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 1 }}
-              className="absolute left-10 bottom-32 glass-dark p-6 rounded-2xl shadow-2xl w-64 border-l-4 border-l-brand-blue backdrop-blur-xl"
-            >
-              <div className="text-4xl font-number font-bold text-white mb-1">2500<span className="text-brand-blue">+</span></div>
-              <div className="text-sm text-gray-300 font-medium tracking-wide">Successful Placements</div>
-            </motion.div>
-
-            {/* Floating Tags */}
-            <motion.div 
-              animate={{ x: [0, 10, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 0.5 }}
-              className="absolute right-10 top-10 glass-dark px-4 py-2 rounded-full shadow-lg flex items-center gap-2"
-            >
-              <span className="w-2 h-2 rounded-full bg-green-400" />
-              <span className="text-sm text-white font-medium">Pan India Recruitment</span>
-            </motion.div>
           </motion.div>
         </div>
       </div>
-      
-      {/* Decorative Blur */}
-      <div className="absolute -top-40 -right-40 w-96 h-96 bg-brand-blue rounded-full mix-blend-multiply filter blur-[128px] opacity-50" />
-      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-brand-gold rounded-full mix-blend-multiply filter blur-[128px] opacity-20" />
     </section>
   );
 }
+
